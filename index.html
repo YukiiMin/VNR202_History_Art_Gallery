@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hồ Chí Minh: Tâm Hồn & Di Sản — Phòng Triển Lãm Thực Tế Ảo 3D</title>
+    <meta
+      name="description"
+      content="Phòng triển lãm thực tế ảo 3D — Khám phá hình tượng Chủ tịch Hồ Chí Minh qua các tác phẩm văn học và nghệ thuật bất hủ."
+    />
+
+    <!-- Google Fonts: Cormorant Garamond + Be Vietnam Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 15 C45 35 35 45 50 85 C65 45 55 35 50 15 Z' fill='%23C9A84C'/><path d='M50 45 C30 45 20 55 30 75 C45 65 48 55 50 45 Z' fill='%23C9A84C' opacity='0.9'/><path d='M50 45 C70 45 80 55 70 75 C55 65 52 55 50 45 Z' fill='%23C9A84C' opacity='0.9'/></svg>">
+  </head>
+
+  <body>
+    <!-- ============================================================ -->
+    <!-- COMPONENT SLOTS — Loader sẽ innerHTML từng slot tương ứng      -->
+    <!-- Thứ tự slot giữ nguyên thứ tự DOM gốc để không phá CSS stacking. -->
+    <!-- ============================================================ -->
+
+    <!-- 1. Logo góc trên cùng bên trái -->
+    <div id="component-slot-header-logo"></div>
+
+    <!-- 2. Màn hình chào mừng (intro menu) -->
+    <div id="component-slot-intro-menu"></div>
+
+    <!-- 3. Modal giới thiệu / hướng dẫn + modal tác giả -->
+    <div id="component-slot-about-modal"></div>
+
+    <!-- 4. In-game HUD: audio controls, painting hover, crosshair, info modal -->
+    <div id="component-slot-hud-overlay"></div>
+
+    <!-- 5. Panel điều khiển trong game -->
+    <div id="component-slot-info-panel"></div>
+
+    <!-- 6. Modal cài đặt phím tắt & âm lượng -->
+    <div id="component-slot-settings-modal"></div>
+
+    <!-- 7. Thanh tiến trình khi nhấn giữ để thoát -->
+    <div id="component-slot-exit-progress"></div>
+
+    <!-- ============================================================ -->
+    <!-- LOADERS — Tải component và bootstrap game                       -->
+    <!-- ============================================================ -->
+    <script type="module" src="./js/loadComponents.js"></script>
+  </body>
+</html>

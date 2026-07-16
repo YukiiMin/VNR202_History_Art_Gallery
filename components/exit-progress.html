@@ -1,0 +1,51 @@
+<!-- Exit Hold Progress Bar -->
+<div
+  id="exit-hold-progress-container"
+  style="
+    display: none;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 10000;
+  "
+>
+  <div
+    style="
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    "
+  >
+    Đang rời phòng triển lãm...
+  </div>
+  <div
+    style="
+      width: 180px;
+      height: 6px;
+      background: rgba(10, 8, 5, 0.85);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    "
+  >
+    <div
+      id="exit-hold-progress-bar"
+      style="
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #c4a882, #a68962);
+        transition: width 0.1s linear;
+      "
+    ></div>
+  </div>
+</div>

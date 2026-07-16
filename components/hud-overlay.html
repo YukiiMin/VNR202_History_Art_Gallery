@@ -1,0 +1,67 @@
+<!-- Audio & Light Quick HUD Controls -->
+    <div id="audio_controls" style="display: none">
+      <div class="hud-control-group">
+        <!-- Nút Phát/Tạm dừng nhạc -->
+        <button id="btn_toggle_audio" class="hud-control-btn">
+          🎵 Tải nhạc...
+        </button>
+
+        <!-- Thanh Kéo Âm Lượng -->
+        <div class="hud-volume-control">
+          <span class="hud-volume-icon">🔊</span>
+          <input
+            type="range"
+            id="volume_slider"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.35"
+            class="hud-slider"
+          />
+        </div>
+
+        <!-- Dropdown Chọn Bài -->
+        <div class="hud-track-dropdown">
+          <button id="btn_dropdown_toggle" class="hud-control-btn">
+            💿 Chọn bài ▾
+          </button>
+          <div
+            id="track_dropdown_menu"
+            class="dropdown-menu-content"
+            style="display: none"
+          >
+            <div class="dropdown-item active" data-index="0">
+              Tiersen (BGM Mặc định)
+            </div>
+            <div class="dropdown-item" data-index="1">
+              The Ballad of Ho Chi Minh
+            </div>
+            <div class="dropdown-item" data-index="2">
+              Người là niềm tin tất thắng
+            </div>
+            <div class="dropdown-item" data-index="3">
+              Đêm nghe hát đò đưa nhớ Bác
+            </div>
+          </div>
+        </div>
+
+        <!-- Nút Tắt/Bật đèn phòng -->
+        <button id="toggle_light" class="hud-control-btn">
+          💡 Tắt bớt đèn
+        </button>
+      </div>
+    </div>
+
+    <!-- Painting Hover Panel (bottom) -->
+    <div id="painting-info"></div>
+
+    <!-- Crosshair -->
+    <div id="crosshair"></div>
+
+    <!-- Info Modal (khi click vào tranh) -->
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal" id="close-modal-btn">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>

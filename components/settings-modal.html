@@ -1,0 +1,409 @@
+<!-- Settings & Keybindings Modal -->
+    <div
+      id="settings-modal"
+      class="modal"
+      style="
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 600;
+      "
+    >
+      <div
+        class="modal-content"
+        style="
+          max-width: 500px;
+          padding: 32px;
+          background: var(--color-glass);
+          border: 1px solid var(--color-gold-dim);
+          border-radius: var(--radius-lg);
+          box-shadow: 0 32px 64px rgba(0, 0, 0, 0.8);
+        "
+      >
+        <button
+          class="close-modal"
+          id="close-settings-btn"
+          style="top: 18px; right: 20px"
+        >
+          ✕
+        </button>
+        <div class="modal-tag">CẤU HÌNH TRIỂN LÃM</div>
+        <h2
+          style="
+            font-family: var(--font-serif);
+            font-size: 28px;
+            color: var(--color-cream);
+            margin: 0 0 20px;
+          "
+        >
+          Cài Đặt Phím Tắt &amp; Âm Lượng
+        </h2>
+
+        <!-- Volume settings -->
+        <div style="margin-bottom: 24px">
+          <h4
+            style="
+              font-family: var(--font-sans);
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 0.15em;
+              color: var(--color-gold);
+              margin-bottom: 12px;
+              text-transform: uppercase;
+            "
+          >
+            Âm Lượng Nhạc Nền
+          </h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              background: rgba(30, 22, 12, 0.3);
+              padding: 12px;
+              border-radius: var(--radius-sm);
+              border: 1px solid rgba(201, 168, 76, 0.1);
+            "
+          >
+            <span style="font-size: 16px">🔊</span>
+            <input
+              type="range"
+              id="settings_volume_slider"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.35"
+              style="flex: 1; accent-color: var(--color-gold)"
+            />
+          </div>
+        </div>
+
+        <!-- Key rebinding inputs -->
+        <div style="margin-bottom: 24px">
+          <h4
+            style="
+              font-family: var(--font-sans);
+              font-size: 11px;
+              font-weight: 700;
+              letter-spacing: 0.15em;
+              color: var(--color-gold);
+              margin-bottom: 12px;
+              text-transform: uppercase;
+            "
+          >
+            Tùy Chỉnh Phím Tắt Hành Động
+          </h4>
+          <div
+            class="keybind-grid"
+            style="display: flex; flex-direction: column; gap: 10px"
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Bật/Tắt Đèn Phòng:</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="toggleLights"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Bật/Tắt Nhạc Nền:</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="toggleAudio"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Xem Câu Chuyện Lịch Sử:</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="inspectObject"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Quay Về Menu Chính:</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="showMenu"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Khóa/Nhả Chuột:</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="toggleMouse"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(30, 22, 12, 0.2);
+                padding: 10px 14px;
+                border-radius: var(--radius-sm);
+                border: 1px solid rgba(201, 168, 76, 0.05);
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: rgba(240, 230, 211, 0.85);
+                  font-family: var(--font-sans);
+                "
+                >Tăng Tốc (Chạy):</span
+              >
+              <input
+                type="text"
+                class="keybind-input"
+                data-action="sprint"
+                readonly
+                style="
+                  width: 75px;
+                  text-align: center;
+                  background: rgba(10, 8, 5, 0.6);
+                  border: 1px solid var(--color-gold-dim);
+                  border-radius: 4px;
+                  color: var(--color-gold);
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  padding: 6px 0;
+                  font-family: var(--font-sans);
+                  outline: none;
+                  cursor: pointer;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Error message container -->
+        <div
+          id="settings_error_msg"
+          style="
+            display: none;
+            color: #ff5555;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 12px;
+            background: rgba(255, 85, 85, 0.1);
+            border: 1px solid rgba(255, 85, 85, 0.3);
+            padding: 8px 12px;
+            border-radius: 4px;
+            line-height: 1.4;
+          "
+        ></div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px">
+          <button
+            id="btn_reset_keys"
+            style="
+              flex: 1;
+              padding: 12px 0;
+              background: transparent;
+              border: 1px solid rgba(240, 230, 211, 0.2);
+              border-radius: 4px;
+              color: rgba(240, 230, 211, 0.6);
+              font-family: var(--font-sans);
+              font-size: 12px;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              outline: none;
+            "
+          >
+            Khôi Phục
+          </button>
+          <button
+            id="btn_save_settings"
+            style="
+              flex: 1;
+              padding: 12px 0;
+              background: linear-gradient(135deg, #c4a882, #a68962);
+              border: none;
+              border-radius: 4px;
+              color: #1e1a14;
+              font-family: var(--font-sans);
+              font-size: 12px;
+              font-weight: 700;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              box-shadow: 0 4px 12px rgba(196, 168, 130, 0.2);
+              outline: none;
+            "
+          >
+            Lưu Lại
+          </button>
+        </div>
+      </div>
+    </div>
