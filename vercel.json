@@ -1,8 +1,39 @@
 {
     "cleanUrls": true,
-    "build": {
-        "env": {
-            "ENABLE_GIT_LFS": "1"
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/components/(.*).html",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html; charset=utf-8"
+          }
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/$1",
+        "headers": {
+          "Cache-Control": "no-cache"
         }
-    }
+      },
+      {
+        "handle": "filesystem"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
 }

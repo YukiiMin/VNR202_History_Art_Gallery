@@ -1,11 +1,5 @@
 {
-  "repository": "https://github.com/theringsofsaturn/3D-art-gallery",
-  "author": {
-    "name": "Emilian Kasemi",
-    "email": "emiliankasemi@gmail.com"
-  },
-  "license": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
-  "scripts": {
+    "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
