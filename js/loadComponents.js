@@ -8,7 +8,7 @@
 async function bootstrapGame() {
   window.dispatchEvent(new CustomEvent('components:all-loaded'));
   try {
-    await import('./main.js');
+    await import('../main.js');
   } catch (err) {
     console.error('[loadComponents] Lỗi import main.js:', err);
   }
