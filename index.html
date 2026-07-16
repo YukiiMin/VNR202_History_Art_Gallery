@@ -24,33 +24,401 @@
 
   <body>
     <!-- ============================================================ -->
-    <!-- COMPONENT SLOTS — Loader sẽ innerHTML từng slot tương ứng      -->
-    <!-- Thứ tự slot giữ nguyên thứ tự DOM gốc để không phá CSS stacking. -->
+    <!-- 1. WEBSITE LOGO — Góc trên cùng bên trái ngoài cùng             -->
     <!-- ============================================================ -->
-
-    <!-- 1. Logo góc trên cùng bên trái -->
-    <div id="component-slot-header-logo"></div>
-
-    <!-- 2. Màn hình chào mừng (intro menu) -->
-    <div id="component-slot-intro-menu"></div>
-
-    <!-- 3. Modal giới thiệu / hướng dẫn + modal tác giả -->
-    <div id="component-slot-about-modal"></div>
-
-    <!-- 4. In-game HUD: audio controls, painting hover, crosshair, info modal -->
-    <div id="component-slot-hud-overlay"></div>
-
-    <!-- 5. Panel điều khiển trong game -->
-    <div id="component-slot-info-panel"></div>
-
-    <!-- 6. Modal cài đặt phím tắt & âm lượng -->
-    <div id="component-slot-settings-modal"></div>
-
-    <!-- 7. Thanh tiến trình khi nhấn giữ để thoát -->
-    <div id="component-slot-exit-progress"></div>
+    <div id="main-web-logo">
+      <svg viewBox="0 0 100 100" class="gold-lotus-logo">
+        <path d="M50 15 C45 35 35 45 50 85 C65 45 55 35 50 15 Z" fill="url(#gold-grad-header)"/>
+        <path d="M50 45 C30 45 20 55 30 75 C45 65 48 55 50 45 Z" fill="url(#gold-grad-header)" opacity="0.9"/>
+        <path d="M50 45 C70 45 80 55 70 75 C55 65 52 55 50 45 Z" fill="url(#gold-grad-header)" opacity="0.9"/>
+        <path d="M50 55 C15 55 10 65 20 80 C35 75 42 68 50 55 Z" fill="url(#gold-grad-header)" opacity="0.8"/>
+        <path d="M50 55 C85 55 90 65 80 80 C65 75 58 68 50 55 Z" fill="url(#gold-grad-header)" opacity="0.8"/>
+        <defs>
+          <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFE79A" />
+            <stop offset="50%" stop-color="#C9A84C" />
+            <stop offset="100%" stop-color="#8A6421" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-main">VIETNAM 1945–1975</span>
+        <span class="logo-sub">30 NĂM KHÁNG CHIẾN</span>
+      </div>
+    </div>
 
     <!-- ============================================================ -->
-    <!-- LOADERS — Tải component và bootstrap game                       -->
+    <!-- 2. INTRO SCREEN — AAA Game Style Landing Page Menu              -->
+    <!-- ============================================================ -->
+    <div id="menu">
+      <div id="starry_night_bg"></div>
+      <div id="menu-overlay"></div>
+
+      <div class="landing-container">
+        <!-- Cột Trái: Main Menu -->
+        <div class="landing-left">
+          <div class="landing-logo">
+            <svg
+              viewBox="0 0 51 48"
+              class="gold-star-logo"
+              style="width: 28px; height: 28px; filter: drop-shadow(0 0 6px #c9a84c);"
+            >
+              <path fill="#C9A84C" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+            </svg>
+            <span class="landing-badge">PHÒNG TRIỂN LÃM LỊCH SỬ 3D</span>
+          </div>
+
+          <div class="landing-title-group">
+            <h1>VIỆT NAM</h1>
+            <h2>30 Năm Kháng Chiến Chống Xâm Lược</h2>
+            <div class="landing-divider"></div>
+            <p class="landing-tagline">
+              "Không có gì quý hơn độc lập, tự do. Nước độc lập muốn thật sự là nước độc lập thì
+              dân cũng phải đứng dậy tự giải phóng lấy mình."
+            </p>
+          </div>
+
+          <ul class="game-menu-list">
+            <li class="menu-item active" id="play_button">
+              <span class="menu-pointer">▶</span>
+              <span class="menu-label">BẮT ĐẦU CHUYẾN ĐI</span>
+            </li>
+            <li class="menu-item" id="about_button">
+              <span class="menu-pointer">▶</span>
+              <span class="menu-label">HƯỚNG DẪN / GIỚI THIỆU</span>
+            </li>
+            <li class="menu-item" id="btn_toggle_hud_volume">
+              <span class="menu-pointer">▶</span>
+              <span class="menu-label">ĐIỀU CHỈNH CẤU HÌNH</span>
+            </li>
+            <li class="menu-item" id="btn_open_author">
+              <span class="menu-pointer">▶</span>
+              <span class="menu-label">THÔNG TIN TÁC GIẢ</span>
+            </li>
+          </ul>
+
+          <div class="landing-footer" style="padding-top: 15px; border-top: 1px solid rgba(201, 168, 76, 0.1); margin-top: 15px; text-align: left;">
+            <img src="/logo/Logo_Trường_Đại_học_FPT.svg.png" alt="Logo Đại học FPT" style="height: 52px; width: auto; opacity: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); transition: all 0.3s ease; cursor: pointer; image-rendering: -webkit-optimize-contrast;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+          </div>
+        </div>
+
+        <!-- Cột Phải: Chapters / Wings Preview -->
+        <div class="landing-right">
+          <div class="chapter-card-wrapper">
+            <div class="chapter-card-header">
+              <h3>CÁC HÀNH TRÌNH LỊCH SỬ</h3>
+              <p>Khám phá hai cuộc kháng chiến vĩ đại của dân tộc Việt Nam</p>
+            </div>
+
+            <div class="chapter-list">
+              <div class="chapter-item" data-desc="Hành trình đầu tiên đưa ta từ ngày Tuyên Ngôn Độc Lập 2/9/1945, qua Chiến thắng Việt Bắc 1947, Chiến dịch Biên Giới 1950, đến Chiến thắng Điện Biên Phủ lừng lẫy 1954 — kết thúc 9 năm kháng chiến chống Pháp.">
+                <span class="chapter-num">CHƯƠNG I</span>
+                <span class="chapter-name">Kháng chiến chống Pháp (1945–1954)</span>
+              </div>
+              <div class="chapter-item" data-desc="Hành trình thứ hai ghi dấu cuộc đấu tranh kiên cường từ Phong trào Đồng Khởi 1960, qua Tổng tiến công Tết Mậu Thân 1968, Chiến dịch Hồ Chí Minh lịch sử năm 1975 — hoàn thành 21 năm kháng chiến chống Mỹ.">
+                <span class="chapter-num">CHƯƠNG II</span>
+                <span class="chapter-name">Kháng chiến chống Mỹ (1954–1975)</span>
+              </div>
+            </div>
+
+            <div class="chapter-detail-panel">
+              <h4 id="chapter-detail-title">Chọn một chương để xem chi tiết</h4>
+              <p id="chapter-detail-text">
+                Di chuột qua danh sách các chương ở trên để đọc giới thiệu sơ
+                lược về nội dung trưng bày của chuyến đi này.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 3. ABOUT OVERLAY — Giới thiệu & Hướng dẫn                     -->
+    <!-- ============================================================ -->
+    <div id="about-overlay">
+      <button id="close-about">✕ ĐÓNG</button>
+
+      <div class="about-content">
+        <div class="about-badge">VỀ TRIỂN LÃM</div>
+        <h1>Việt Nam: 30 năm kháng chiến chống xâm lược (1945–1975)</h1>
+
+        <p>
+          Phòng triển lãm lịch sử này là sản phẩm sáng tạo mang tính trừu tượng hóa của sinh viên — không phải thực tế ảo VR trải nghiệm thật, mà một <strong>game 2.5D–3D</strong> mô phỏng không gian phòng triển lãm, mang đến trải nghiệm tương tự như đang đi tham quan ngoài đời.
+        </p>
+        <p>
+          Người chơi được dẫn dắt qua <strong>hai giai đoạn lịch sử</strong>: kháng chiến chống Pháp (1945–1954) với những cột mốc như Tuyên Ngôn Độc Lập, Chiến thắng Việt Bắc, Chiến dịch Biên Giới và Điện Biên Phủ; tiếp đến là cuộc kháng chiến chống Mỹ (1954–1975) với các sự kiện điển hình từ Phong trào Đồng Khởi, Tổng tiến công Tết Mậu Thân cho đến Chiến dịch Hồ Chí Minh lịch sử.
+        </p>
+
+        <div class="about-wings">
+          <div class="wing-item">
+            <span class="wing-tag">Tường Trước</span>
+            <span>Tuyên Ngôn Độc Lập — Chiến thắng Việt Bắc — Chiến dịch Biên Giới</span>
+          </div>
+          <div class="wing-item">
+            <span class="wing-tag">Tường Trái</span>
+            <span>Điện Biên Phủ — Hiệp định Genève — Đồng Khởi — Mặt trận Dân tộc GP — Đánh bại Chiến tranh đặc biệt</span>
+          </div>
+          <div class="wing-item">
+            <span class="wing-tag">Tường Sau</span>
+            <span>Sự kiện Vịnh Bắc Bộ — Đánh bại Chiến tranh cục bộ — Tổng tiến công Tết Mậu Thân</span>
+          </div>
+          <div class="wing-item">
+            <span class="wing-tag">Tường Phải</span>
+            <span>Mùa hè đỏ lửa 1972 — Điện Biên Phủ trên không — Hiệp định Paris — Phước Long — Tây Nguyên</span>
+          </div>
+        </div>
+
+        <div class="about-controls">
+          <h2>Hướng dẫn tham quan</h2>
+          <div class="controls-grid">
+            <div class="control-item">
+              <kbd>W A S D</kbd><span>Di chuyển trong không gian 3D</span>
+            </div>
+            <div class="control-item">
+              <kbd>Chuột</kbd><span>Xoay góc nhìn (kéo thả)</span>
+            </div>
+            <div class="control-item">
+              <kbd>Click</kbd><span>Xem thông tin chi tiết về tác phẩm</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_showMenu">M</kbd><span>Quay về màn hình chính</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_toggleLights">L</kbd><span>Bật / tắt đèn phòng triển lãm</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_toggleAudio">K</kbd><span>Bật / tắt nhạc nền (audio)</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_inspectObject">T</kbd><span>Xem câu chuyện lịch sử (vật phẩm bàn)</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_toggleMouse">Space</kbd><span>Bật / tắt con trỏ chuột di chuyển</span>
+            </div>
+            <div class="control-item">
+              <kbd id="kbd_sprint">Shift</kbd><span>Tăng tốc di chuyển (Chạy)</span>
+            </div>
+            <div class="control-item">
+              <kbd>Esc</kbd><span>Thoát chế độ con trỏ chuột bị khóa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- AUTHOR OVERLAY — Thông tin tác giả                             -->
+    <!-- ============================================================ -->
+    <div id="author-overlay">
+      <button id="close-author">✕ ĐÓNG</button>
+
+      <div class="about-content">
+        <div class="about-badge">THÔNG TIN TÁC GIẢ</div>
+        <h1>Việt Nam: 30 năm kháng chiến chống xâm lược (1945–1975)</h1>
+        <p class="about-lead" style="font-size: 16px; color: var(--color-gold); font-family: var(--font-serif); font-style: italic; margin-top: -10px; margin-bottom: 25px;">
+          Triển Lãm Lịch Sử Việt Nam — Game 3D (VNR202)
+        </p>
+
+        <div class="about-wings" style="background: rgba(201, 168, 76, 0.08); border-color: rgba(201, 168, 76, 0.35); padding: 28px; margin-bottom: 25px;">
+          <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--color-cream); margin-top: 0; margin-bottom: 18px; border-bottom: 1px solid rgba(201, 168, 76, 0.2); padding-bottom: 10px;">
+            Ban Thực Hiện Dự Án
+          </h2>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(201, 168, 76, 0.1); padding-bottom: 8px;">
+              <span style="font-weight: 600; color: var(--color-cream); font-size: 15px;">Lớp học phần:</span>
+              <span style="color: var(--color-gold); font-weight: 500;">VNR202 — Đại học FPT TP.HCM</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(201, 168, 76, 0.1); padding-bottom: 8px;">
+              <span style="font-weight: 600; color: var(--color-cream); font-size: 15px;">Công nghệ tích hợp:</span>
+              <span style="color: var(--color-gold); font-weight: 500; text-align: right;">Web3D Three.js + Raycasting + Canvas Procedurals</span>
+            </div>
+          </div>
+
+          <div class="author-cards">
+            <div class="author-card">
+              <div class="author-role">Thành viên thực hiện</div>
+              <div class="author-name">Hoàng Tuấn Minh</div>
+              <div class="author-mssv">MSSV: <span style="color: var(--color-gold); font-weight: 600;">SE184760</span></div>
+            </div>
+            <div class="author-card">
+              <div class="author-role">Thành viên thực hiện</div>
+              <div class="author-name">Lê Trọng Hiếu</div>
+              <div class="author-mssv">MSSV: <span style="color: var(--color-gold); font-weight: 600;">SE161727</span></div>
+            </div>
+            <div class="author-card">
+              <div class="author-role">Thành viên thực hiện</div>
+              <div class="author-name">Biện Trung Tín</div>
+              <div class="author-mssv">MSSV: <span style="color: var(--color-gold); font-weight: 600;">SE182296</span></div>
+            </div>
+            <div class="author-card">
+              <div class="author-role">Thành viên thực hiện</div>
+              <div class="author-name">Trần Vũ Trường Sơn</div>
+              <div class="author-mssv">MSSV: <span style="color: var(--color-gold); font-weight: 600;">SE184788</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-usage-section">
+          <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--color-cream); margin-top: 0; margin-bottom: 16px; border-bottom: 1px solid rgba(201, 168, 76, 0.2); padding-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <span>✨</span> HOẠT ĐỘNG ĐÓNG GÓP AI (AI USAGE &amp; CONTRIBUTIONS)
+          </h2>
+          <p style="font-size: 13.5px; color: rgba(240, 230, 211, 0.75); line-height: 1.6; margin-bottom: 20px;">
+            Sản phẩm game 3D triển lãm lịch sử này được kiến tạo với sự đồng hành và hỗ trợ đắc lực từ các Trí tuệ Nhân tạo (AI) hàng đầu:
+          </p>
+
+          <div class="ai-cards-container">
+            <div class="ai-card">
+              <div class="ai-card-left">
+                <span class="ai-badge gemini-badge">Gemini AI</span>
+                <span class="ai-role-label">Business Analyst</span>
+              </div>
+              <div class="ai-card-right">
+                <p>Đóng vai trò <strong>BA (Business Analyst)</strong>: Đảm nhiệm chính trong việc <strong>Brainstorming ý tưởng</strong>, nghiên cứu chuyên sâu, tìm kiếm <strong>thông tin lịch sử chính xác</strong> và thu thập hệ thống <strong>hình ảnh tư liệu nghệ thuật</strong> cốt lõi cho triển lãm.</p>
+              </div>
+            </div>
+            <div class="ai-card">
+              <div class="ai-card-left">
+                <span class="ai-badge claude-badge">Claude.ai</span>
+                <span class="ai-role-label">Lead Dev &amp; Design</span>
+              </div>
+              <div class="ai-card-right">
+                <p>Đóng vai trò <strong>Dev Lead &amp; Design Lead</strong>: Thiết lập các <strong>kế hoạch triển khai chi tiết</strong>, định hình <strong>thiết kế cụ thể rõ ràng</strong> từ dữ liệu đầu vào của Gemini, chốt giải pháp công nghệ, giao diện UI/UX và phương án mỹ thuật tối ưu.</p>
+              </div>
+            </div>
+            <div class="ai-card">
+              <div class="ai-card-left">
+                <span class="ai-badge antigravity-badge">Cursor AI</span>
+                <span class="ai-role-label">Core Developer</span>
+              </div>
+              <div class="ai-card-right">
+                <p>Đóng vai trò <strong>Software Engineer chính</strong>: Đảm nhiệm toàn bộ việc <strong>triển khai xây dựng project</strong>, viết code lập trình 3D tương tác, dựng khung cảnh triển lãm, xử lý sự kiện, âm thanh và hoàn thiện sản phẩm game.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-controls" style="margin-top: 30px;">
+          <h2>Mục tiêu dự án</h2>
+          <p style="font-size: 14.5px; line-height: 1.8; color: rgba(240, 230, 211, 0.8);">
+            Dự án xây dựng một <strong>game triển lãm lịch sử 3D</strong> nhằm tái hiện sinh động hai giai đoạn kháng chiến vĩ đại của dân tộc Việt Nam: cuộc kháng chiến chống Pháp (1945–1954) và cuộc kháng chiến chống Mỹ (1954–1975). Người chơi được trải nghiệm không gian phòng triển lãm, tương tác với các hiện vật lịch sử, tìm hiểu từng cột mốc quan trọng — từ Tuyên Ngôn Độc Lập đến Chiến dịch Hồ Chí Minh — như đang tham quan một phòng triển lãm thực tế ngoài đời.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 4. Audio & Light Quick HUD Controls                            -->
+    <!-- ============================================================ -->
+    <div id="audio_controls" style="display: none">
+      <div class="hud-control-group">
+        <button id="btn_toggle_audio" class="hud-control-btn">🎵 Tải nhạc...</button>
+        <div class="hud-volume-control">
+          <span class="hud-volume-icon">🔊</span>
+          <input type="range" id="volume_slider" min="0" max="1" step="0.05" value="0.35" class="hud-slider"/>
+        </div>
+        <div class="hud-track-dropdown">
+          <button id="btn_dropdown_toggle" class="hud-control-btn">💿 Chọn bài ▾</button>
+          <div id="track_dropdown_menu" class="dropdown-menu-content" style="display: none">
+            <div class="dropdown-item active" data-index="0">Tiersen (BGM Mặc định)</div>
+            <div class="dropdown-item" data-index="1">The Ballad of Ho Chi Minh</div>
+            <div class="dropdown-item" data-index="2">Người là niềm tin tất thắng</div>
+            <div class="dropdown-item" data-index="3">Đêm nghe hát đò đưa nhớ Bác</div>
+          </div>
+        </div>
+        <button id="toggle_light" class="hud-control-btn">💡 Tắt bớt đèn</button>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. Controls Info Panel                                         -->
+    <!-- ============================================================ -->
+    <div id="info-panel">
+      <div id="info-header">
+        <h3>Điều khiển</h3>
+        <button id="toggle-info">Ẩn</button>
+      </div>
+      <div id="info-content">
+        <p><b>W/A/S/D:</b> Di chuyển</p>
+        <p><b>Chuột:</b> Xoay góc nhìn</p>
+        <p><b>Click:</b> Chi tiết tranh</p>
+        <p><b class="key-inspect-label">T:</b> Xem chuyện lịch sử</p>
+        <p><b class="key-lights-label">L:</b> Bật/tắt đèn</p>
+        <p><b class="key-audio-label">K:</b> Bật/tắt nhạc</p>
+        <p><b class="key-menu-label">M:</b> Menu chính</p>
+        <p><b class="key-sprint-label">Shift:</b> Tăng tốc (Chạy)</p>
+        <p><b>Space:</b> Khóa chuột</p>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 6. Settings & Keybindings Modal                                -->
+    <!-- ============================================================ -->
+    <div id="settings-modal" class="modal" style="display: none; justify-content: center; align-items: center; z-index: 600;">
+      <div class="modal-content" style="max-width: 500px; padding: 32px; background: var(--color-glass); border: 1px solid var(--color-gold-dim); border-radius: var(--radius-lg); box-shadow: 0 32px 64px rgba(0, 0, 0, 0.8);">
+        <button class="close-modal" id="close-settings-btn" style="top: 18px; right: 20px">✕</button>
+        <div class="modal-tag">CẤU HÌNH TRIỂN LÃM</div>
+        <h2 style="font-family: var(--font-serif); font-size: 28px; color: var(--color-cream); margin: 0 0 20px;">Cài Đặt Phím Tắt &amp; Âm Lượng</h2>
+
+        <div style="margin-bottom: 24px">
+          <h4 style="font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 12px; text-transform: uppercase;">Âm Lượng Nhạc Nền</h4>
+          <div style="display: flex; align-items: center; gap: 15px; background: rgba(30, 22, 12, 0.3); padding: 12px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.1);">
+            <span style="font-size: 16px">🔊</span>
+            <input type="range" id="settings_volume_slider" min="0" max="1" step="0.05" value="0.35" style="flex: 1; accent-color: var(--color-gold)"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px">
+          <h4 style="font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 12px; text-transform: uppercase;">Tùy Chỉnh Phím Tắt Hành Động</h4>
+          <div class="keybind-grid" style="display: flex; flex-direction: column; gap: 10px">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Bật/Tắt Đèn Phòng:</span>
+              <input type="text" class="keybind-input" data-action="toggleLights" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Bật/Tắt Nhạc Nền:</span>
+              <input type="text" class="keybind-input" data-action="toggleAudio" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Xem Câu Chuyện Lịch Sử:</span>
+              <input type="text" class="keybind-input" data-action="inspectObject" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Quay Về Menu Chính:</span>
+              <input type="text" class="keybind-input" data-action="showMenu" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Khóa/Nhả Chuột:</span>
+              <input type="text" class="keybind-input" data-action="toggleMouse" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(30, 22, 12, 0.2); padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(201, 168, 76, 0.05);">
+              <span style="font-size: 13px; color: rgba(240, 230, 211, 0.85); font-family: var(--font-sans);">Tăng Tốc (Chạy):</span>
+              <input type="text" class="keybind-input" data-action="sprint" readonly style="width: 75px; text-align: center; background: rgba(10, 8, 5, 0.6); border: 1px solid var(--color-gold-dim); border-radius: 4px; color: var(--color-gold); font-weight: 700; text-transform: uppercase; padding: 6px 0; font-family: var(--font-sans); outline: none; cursor: pointer;"/>
+            </div>
+          </div>
+        </div>
+
+        <div id="settings_error_msg" style="display: none; color: #ff5555; font-family: var(--font-sans); font-size: 11px; font-weight: 600; text-align: center; margin-bottom: 12px; background: rgba(255, 85, 85, 0.1); border: 1px solid rgba(255, 85, 85, 0.3); padding: 8px 12px; border-radius: 4px; line-height: 1.4;"></div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px">
+          <button id="btn_reset_keys" style="flex: 1; padding: 12px 0; background: transparent; border: 1px solid rgba(240, 230, 211, 0.2); border-radius: 4px; color: rgba(240, 230, 211, 0.6); font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; outline: none;">Khôi Phục</button>
+          <button id="btn_save_settings" style="flex: 1; padding: 12px 0; background: linear-gradient(135deg, #c4a882, #a68962); border: none; border-radius: 4px; color: #1e1a14; font-family: var(--font-sans); font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(196, 168, 130, 0.2); outline: none;">Lưu Lại</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 7. Exit Hold Progress Bar                                      -->
+    <!-- ============================================================ -->
+    <div id="exit-hold-progress-container" style="display: none; position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; z-index: 10000;">
+      <div style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 8px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;">Đang rời phòng triển lãm...</div>
+      <div style="width: 180px; height: 6px; background: rgba(10, 8, 5, 0.85); border: 1px solid rgba(201, 168, 76, 0.3); border-radius: 4px; overflow: hidden; margin: 0 auto; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+        <div id="exit-hold-progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #c4a882, #a68962); transition: width 0.1s linear;"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- LOADERS — Bootstrap game                                       -->
     <!-- ============================================================ -->
     <script type="module" src="./js/loadComponents.js"></script>
   </body>
