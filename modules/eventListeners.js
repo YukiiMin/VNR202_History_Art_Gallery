@@ -67,6 +67,11 @@ export const updateHUDKeys = () => {
 };
 
 export const setupEventListeners = (controls, camera, scene) => {
+  // Keep lockPointer in sync with actual pointer-lock state
+  document.addEventListener('pointerlockchange', () => {
+    lockPointer = !!document.pointerLockElement;
+  });
+
   // Update HUD key labels at startup
   updateHUDKeys();
 
@@ -171,11 +176,8 @@ function onKeyDown(event, controls) {
   }
 
   if (event.key === "Escape") {
-    // if the "ESC" key is pressed
-    showMenu(); // show the menu
-    showMenuOnUnlock = true;
-    controls.unlock(); // unlock the pointer
-    lockPointer = false;
+    // showMenu() already calls controls.unlock() via bindMenuControls.
+    showMenu();
   }
 
   const keys = window.customKeys;
@@ -212,9 +214,6 @@ function onKeyDown(event, controls) {
   // Mở menu chính
   if (pressedKey === keys.showMenu.toLowerCase()) {
     showMenu();
-    showMenuOnUnlock = true;
-    controls.unlock();
-    lockPointer = false;
   }
 
   if (pressedKey === "r") {

@@ -9,7 +9,7 @@ import { createBoundingBoxes } from "./modules/boundingBox.js";
 import { setupRendering } from "./modules/rendering.js";
 import { setupEventListeners } from "./modules/eventListeners.js";
 import { addObjectsToScene } from "./modules/sceneHelpers.js";
-import { setupPlayButton, setupAboutButton } from "./modules/menu.js";
+import { setupPlayButton, setupAboutButton, bindMenuControls } from "./modules/menu.js";
 import { setupAudio } from "./modules/audioGuide.js";
 import { setupVR } from "./modules/VRSupport.js";
 import { setupGates } from "./modules/gates.js";
@@ -23,6 +23,7 @@ let { camera, controls, renderer } = setupScene();
 
 // 1b. Bind controls into ui.js so showModal/hideModal can lock/unlock pointer.
 bindControls(controls);
+bindMenuControls(controls);
 
 // 2. Audio + VR
 setupAudio(camera);

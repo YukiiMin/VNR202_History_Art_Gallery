@@ -42,6 +42,14 @@ export function setupInteraction(camera, objects, paintings) {
         raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
         const intersects = raycaster.intersectObjects(interactiveObjects, true);
         const hit = intersects.find(i => i.distance < 20);
+        // DEBUG: log first few clicks to help diagnose "click does nothing"
+        if (!window.__clickLogged) {
+            window.__clickLogged = true;
+            console.log('[click-debug] interactiveObjects count:', interactiveObjects.length,
+                '| intersects:', intersects.length,
+                '| first 3 names:', intersects.slice(0, 3).map(i => i.object.name || i.object.userData?.type || 'unknown'),
+                '| pointerLockElement:', !!document.pointerLockElement);
+        }
         if (!hit) return;
         const target = getInteractiveRoot(hit.object);
         triggerInteraction(target);

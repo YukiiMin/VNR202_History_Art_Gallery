@@ -1,36 +1,58 @@
 import { startAudio } from "./audioGuide.js";
 
-export const hideMenu = () => {
-  const menu = document.getElementById('menu');
-  if (menu) menu.style.display = 'none'; // Hide the menu
+// Bind PointerLockControls so showMenu() can pause/resume gameplay safely.
+// Required because the in-game menu uses the same pointer-locked scene and
+// must not let the camera move / interact while visible.
+let controlsRef = null;
+export function bindMenuControls(controls) {
+    controlsRef = controls || null;
+}
 
-  // Show the HUD controls panel (audio, lights toggle)
-  const hudControls = document.getElementById('audio_controls');
-  if (hudControls) {
-    hudControls.style.display = 'flex';
-  }
+export const hideMenu = () => {
+    const menu = document.getElementById('menu');
+    if (menu) menu.style.display = 'none'; // Hide the menu
+
+    // Show the HUD controls panel (audio, lights toggle)
+    const hudControls = document.getElementById('audio_controls');
+    if (hudControls) {
+        hudControls.style.display = 'flex';
+    }
 };
 
 export const showMenu = () => {
-  const menu = document.getElementById('menu');
-  if (menu) menu.style.display = 'flex'; // Show the menu (using flex to align full-screen container)
+    const menu = document.getElementById('menu');
+    if (menu) menu.style.display = 'flex'; // Show the menu (using flex to align full-screen container)
 
-  // Hide the HUD controls panel
-  const hudControls = document.getElementById('audio_controls');
-  if (hudControls) {
-    hudControls.style.display = 'none';
-  }
+    // Hide the HUD controls panel
+    const hudControls = document.getElementById('audio_controls');
+    if (hudControls) {
+        hudControls.style.display = 'none';
+    }
+
+    // Unlock pointer so camera stops drifting while user reads the menu.
+    if (controlsRef) controlsRef.unlock();
 };
 
-// Lock the pointer and start tour
+// Lock the pointer and start tour.
+// IMPORTANT: controls.lock() MUST run synchronously inside the click
+// handler. The browser's user-gesture context expires after the current
+// task, so wrapping lock() in setTimeout(0) breaks pointer acquisition.
 export const startExperience = (controls) => {
-  controls.lock();
-  hideMenu();
-  
-  // Auto-play BGM
-  setTimeout(() => {
-    startAudio();
-  }, 100);
+    controls.lock();
+    hideMenu();
+
+    // Auto-play BGM
+    setTimeout(() => {
+        startAudio();
+    }, 100);
+
+    // First-time onboarding hint: tell player to look around and click.
+    const hint = document.getElementById('first-pov-hint');
+    if (hint) {
+        hint.classList.add('show');
+        // Auto-hide after 6 seconds so it doesn't obstruct the gallery view.
+        setTimeout(() => hint.classList.remove('show'), 6000);
+    }
 };
 
 export const setupPlayButton = (controls) => {
